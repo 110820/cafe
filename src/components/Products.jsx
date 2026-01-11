@@ -7,9 +7,9 @@ import coffee3 from "../assets/mocha.jpg";
 import coffee4 from "../assets/cappuccino.jpg";
 
 const products = [
-  { name: "Espresso", img: coffee1 },
-  { name: "Latte", img: coffee2 },
-  { name: "Cappuccino", img: coffee3 },
+  { name: "Espresso", img: coffee1, description: "Rich and smooth" },
+  { name: "Latte", img: coffee2, description: "Rich and smooth" },
+  { name: "Cappuccino", img: coffee3, description: "Rich and smooth" },
   { name: "Mocha", img: coffee4 },
 ];
 
@@ -22,7 +22,7 @@ const Products = () => {
         <div>
           <div className="flex items-center gap-2 mb-3">
             <span className="text-xl">☕</span>
-            <p className="text-sm font-medium text-gray-600">
+            <p className="text-lg font-medium text-black-800">
               Coffeehouse Specials
             </p>
           </div>
@@ -40,6 +40,7 @@ const Products = () => {
             {/* Book Table Button → Reservation Page */}
             <Link
               to="/reservation"
+              onClick={() => window.scrollTo({ top: 0, behavior: "smooth"})}
               className="px-6 py-3 rounded-full border border-[#3b2a1a] text-[#3b2a1a] hover:bg-[#3b2a1a] hover:text-white transition inline-block"
             >
               Book a Table
@@ -49,6 +50,7 @@ const Products = () => {
             {/* Visit Us → Coffee Menu */}
             <Link
               to="/coffee-menu"
+              onClick={() => window.scrollTo({ top: 0, behavior: "smooth"})}
               className="px-6 py-3 rounded-full bg-[#3b2a1a]
                          text-white hover:bg-[#2a1a10]
                          transition inline-block"
@@ -66,20 +68,35 @@ const Products = () => {
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {products.map((item, index) => (
-              <div key={index} className="text-center">
-                <img
-                  src={item.img}
-                  alt={item.name}
-                  className="rounded-xl shadow-md mb-3 w-full h-[140px] object-cover"
-                />
-                <h4 className="font-semibold text-[#3b2a1a]">
-                  {item.name}
-                </h4>
-                <p className="text-sm text-gray-500">
-                  Rich & Smooth
-                </p>
-              </div>
-            ))}
+  <div
+    key={index}
+    className="text-center group transition-all duration-300"
+  >
+    <div className="overflow-hidden rounded-xl shadow-md
+                    transition-all duration-300
+                    group-hover:shadow-xl
+                    group-hover:-translate-y-1">
+      <img
+        src={item.img}
+        alt={item.name}
+        className="w-full h-[140px] object-cover
+                   transition-transform duration-500
+                   group-hover:scale-110"
+      />
+    </div>
+
+    <h4 className="font-semibold text-[#3b2a1a] mt-3
+                   transition-colors duration-300
+                   group-hover:text-[#6f3f25]">
+      {item.name}
+    </h4>
+
+    <p className="text-sm text-gray-500">
+      Rich & Smooth
+    </p>
+  </div>
+))}
+
           </div>
         </div>
 

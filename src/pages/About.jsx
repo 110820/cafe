@@ -3,10 +3,12 @@ import Footer from "../components/Footer";
 import coffeeShopImage from "../assets/coffeeshop.jpg";
 import brewingImage from "../assets/coffe.jpg";
 import founderImage from "../assets/cappuccino.jpg";
+import chefImage from "../assets/chef.jpg";
+import aboutBg from "../assets/abbg.jpg";
 
 const About = () => {
   return (
-    <div className="bg-cream min-h-screen">
+    <div className="bg-[#f3e2cf] min-h-screen">
       <Navbar />
       
       {/* Hero Section */}
@@ -60,38 +62,109 @@ const About = () => {
         </div>
       </section>
 
-      {/* Our Mission Section */}
-      <section className="py-16 bg-cream">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-coffee mb-4 font-serif">Our Mission</h2>
-            <div className="w-24 h-1 bg-brown mx-auto mb-6"></div>
-            <p className="text-lg text-gray-700 max-w-3xl mx-auto">
-              To create a warm and welcoming environment where people can enjoy exceptional coffee and connect with one another.
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
-            <div className="bg-white p-8 rounded-lg shadow-lg text-center">
-              <div className="text-4xl mb-4">☕</div>
-              <h3 className="text-xl font-bold text-coffee mb-3">Quality Coffee</h3>
-              <p className="text-gray-600">We use only the finest beans sourced from ethical farms around the world.</p>
-            </div>
-            
-            <div className="bg-white p-8 rounded-lg shadow-lg text-center">
-              <div className="text-4xl mb-4">❤️</div>
-              <h3 className="text-xl font-bold text-coffee mb-3">Community</h3>
-              <p className="text-gray-600">Creating a space where people can connect and build meaningful relationships.</p>
-            </div>
-            
-            <div className="bg-white p-8 rounded-lg shadow-lg text-center">
-              <div className="text-4xl mb-4">🌱</div>
-              <h3 className="text-xl font-bold text-coffee mb-3">Sustainability</h3>
-              <p className="text-gray-600">Committed to environmentally responsible practices and fair trade.</p>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Our Mission – Image Style Section */}
+      <section className="relative w-full py-20 bg-coffee text-white text-8xl font-bold flex items-center justify-center"
+        style={{
+          backgroundImage: `url(${aboutBg})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      >
+      {/* Background Overlay */}
+  <div className="absolute inset-0 bg-black/50"></div>
+
+  <div className="relative max-w-7xl mx-auto px-6">
+    <div className="grid grid-cols-1 md:grid-cols-4 gap-10 text-center">
+      
+      
+
+
+      {/* Item 1 */}
+      <div className="px-6 md:border-r md:border-cream/30">
+        <div className="text-4xl mb-4">☕</div>
+        <h3 className="text-2xl font-serif font-semibold mb-2">
+          Quality Coffee
+        </h3>
+        <p className="text-lg text-white/90 leading-relaxed">
+          Crafted with premium beans for a rich and unforgettable taste.
+        </p>
+      </div>
+
+      {/* Item 2 */}
+      <div className="px-6 md:border-r md:border-cream/30">
+        <div className="text-4xl mb-4">🍸</div>
+        <h3 className="text-2xl font-serif font-semibold mb-2">
+          Crafted Beverages
+        </h3>
+        <p className="text-lg text-white/90 leading-relaxed">
+          Signature drinks designed to delight every sip.
+        </p>
+      </div>
+
+      {/* Item 3 */}
+      <div className="px-6 md:border-r md:border-cream/30">
+        <div className="text-4xl mb-4">🏡</div>
+        <h3 className="text-2xl font-serif font-semibold mb-2">
+          Rustic Ambience
+        </h3>
+        <p className="text-lg text-white/90 leading-relaxed">
+          A cozy space perfect for brunches, meetings, and celebrations.
+        </p>
+      </div>
+
+      {/* Item 4 */}
+      <div className="px-6">
+        <div className="text-4xl mb-4">🎶</div>
+        <h3 className="text-2xl font-serif font-semibold mb-2">
+          High-Energy Vibes
+        </h3>
+        <p className="text-lg text-white/90 leading-relaxed">
+          Lively atmosphere with music, laughter, and great moments.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+{/* Our Chefs Section */}
+<section className="py-24 bg-cream">
+  <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+
+    {/* LEFT – Text Content */}
+    <div>
+      {/* <h2 className="text-4xl font-serif text-[#2f1d13] mb-6">
+        Our Chefs
+      </h2> */}
+
+      <h2 className="mt-4 text-4xl md:text-5xl font-bold text-center mb-6 text-coffee leading-tight">
+        Our Chefs
+      </h2>
+
+      <p className="mt-6 text-black-500 leading-relaxed text-lg max-w-xl">
+        At BrewCafe, our head chefs, Sunil Bisen and Krishnam Rathi, with
+        years of experience in the industry, curate our menu with carefully
+        selected dishes offering a unique blend of flavors and textures.
+        Sourcing fresh ingredients from local markets, their passion for
+        cooking reflects in every dish, ensuring each customer's memorable
+        dining experience. With their expertise and creativity, they bring a
+        fresh perspective to the culinary world, and we are proud to have them
+        lead our kitchen.
+      </p>
+    </div>
+
+    {/* RIGHT – Image */}
+    <div className="relative">
+      <img
+        src={chefImage}  // replace with your chef image path
+        alt="Our Chef"
+        className="w-full h-[520px] object-cover"
+      />
+    </div>
+
+  </div>
+</section>
+
+
 
       {/* Values Section */}
       <section className="py-16 bg-white">
@@ -124,9 +197,7 @@ const About = () => {
                   <span className="text-lg text-gray-700">Supporting local communities</span>
                 </li>
               </ul>
-              <button className="bg-brown text-white px-6 py-3 rounded-full hover:bg-opacity-90 transition duration-300">
-                Learn More
-              </button>
+              
             </div>
           </div>
         </div>

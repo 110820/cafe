@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
@@ -15,6 +16,9 @@ const coffeeMenu = [
 ];
 
 function CoffeeMenu() {
+  const [showForm, setShowForm] = useState(false);
+  const [selectedDish, setSelectedDish] = useState("");
+
   return (
     <div className="bg-[#FFF7F0] min-h-screen">
       <Navbar />
@@ -24,7 +28,7 @@ function CoffeeMenu() {
         <h1 className="text-4xl font-bold text-coffee mb-3">
           Coffee Menu
         </h1>
-        <p className="text-gray-600">
+        <p className=" text-lg font-medium text-black-800">
           Freshly brewed happiness in every cup ☕
         </p>
       </section>
@@ -49,14 +53,18 @@ function CoffeeMenu() {
                 <h3 className="text-lg font-semibold text-coffee">
                   {coffee.name}
                 </h3>
-                <p className="text-gray-500 mt-1">
-                  Rich & Smooth
-                </p>
+
+                <p className="text-gray-500 mt-1">Rich & Smooth</p>
+
                 <p className="mt-2 font-bold text-[#8b5a3c]">
                   {coffee.price}
                 </p>
 
                 <button
+                  onClick={() => {
+                    setSelectedDish(coffee.name);
+                    setShowForm(true);
+                  }}
                   className="mt-4 px-5 py-2 rounded-full
                              bg-coffee text-white text-sm
                              hover:bg-[#6f3f25] transition"
@@ -68,6 +76,68 @@ function CoffeeMenu() {
           ))}
         </div>
       </section>
+
+      {/* ORDER MODAL */}
+      {showForm && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center px-4 z-50">
+          <div className="bg-white w-full max-w-md rounded-2xl p-6 relative shadow-xl">
+
+            {/* Close */}
+            <button
+              onClick={() => setShowForm(false)}
+              className="absolute top-4 right-4 text-xl"
+            >
+              ✕
+            </button>
+
+            <h2 className="text-2xl font-serif text-center text-coffee mb-6">
+              Book Your Order
+            </h2>
+
+            <form className="space-y-4">
+              <input
+                type="text"
+                placeholder="Your Name"
+                className="w-full border rounded-lg px-4 py-3 text-sm"
+              />
+
+              <input
+                type="text"
+                placeholder="Table No"
+                className="w-full border rounded-lg px-4 py-3 text-sm"
+              />
+
+              <input
+                type="text"
+                value={selectedDish}
+                readOnly
+                className="w-full border bg-gray-100 rounded-lg px-4 py-3 text-sm"
+              />
+
+              <input
+                type="number"
+                placeholder="Quantity"
+                className="w-full border rounded-lg px-4 py-3 text-sm"
+              />
+
+              <input
+                type="tel"
+                placeholder="Phone Number"
+                className="w-full border rounded-lg px-4 py-3 text-sm"
+              />
+
+              <button
+                type="submit"
+                className="w-full mt-4 bg-[#3b2f2f]
+                           text-white py-3 rounded-full
+                           font-semibold hover:opacity-90 transition"
+              >
+                Book Order
+              </button>
+            </form>
+          </div>
+        </div>
+      )}
 
       <Footer />
     </div>
