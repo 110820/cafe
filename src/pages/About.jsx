@@ -27,40 +27,56 @@ const About = () => {
       </section>
 
       {/* Our Story Section */}
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-col lg:flex-row items-center gap-12">
-            <div className="lg:w-1/2">
-              <img 
-                src={coffeeShopImage} 
-                alt="Our Coffee Shop" 
-                className="w-full h-96 object-cover rounded-xl shadow-lg"
-              />
-            </div>
-            <div className="lg:w-1/2">
-              <h2 className="text-4xl font-bold text-coffee mb-6 font-serif">Our Story</h2>
-              <p className="text-lg text-gray-700 mb-4 leading-relaxed">
-                Founded in 2020, our coffee shop has been dedicated to bringing the finest coffee experience to our customers. 
-                Every cup is carefully crafted with passion and attention to detail.
-              </p>
-              <p className="text-lg text-gray-700 mb-6 leading-relaxed">
-                We source our beans from sustainable farms around the world, ensuring both quality and ethical practices.
-              </p>
-              <div className="flex items-center gap-4">
-                <img 
-                  src={founderImage} 
-                  alt="Founder" 
-                  className="w-16 h-16 object-cover rounded-full border-2 border-brown"
-                />
-                <div>
-                  <h3 className="font-bold text-coffee text-lg">John Doe</h3>
-                  <p className="text-gray-600">Founder & Head Barista</p>
-                </div>
-              </div>
-            </div>
+      <section className="py-12 md:py-16 bg-white">
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10">
+    <div className="flex flex-col lg:flex-row items-center gap-10 lg:gap-14">
+
+      {/* Image */}
+      <div className="w-full lg:w-1/2">
+        <img
+          src={coffeeShopImage}
+          alt="Our Coffee Shop"
+          className="w-full h-64 sm:h-80 md:h-96 object-cover rounded-xl shadow-lg"
+        />
+      </div>
+
+      {/* Content */}
+      <div className="w-full lg:w-1/2 text-center lg:text-left">
+        <h2 className="text-3xl sm:text-4xl font-bold text-coffee mb-6 font-serif">
+          Our Story
+        </h2>
+
+        <p className="text-base sm:text-lg text-gray-700 mb-4 leading-relaxed">
+          Founded in 2020, our coffee shop has been dedicated to bringing the finest coffee experience to our customers.
+          Every cup is carefully crafted with passion and attention to detail.
+        </p>
+
+        <p className="text-base sm:text-lg text-gray-700 mb-6 leading-relaxed">
+          We source our beans from sustainable farms around the world, ensuring both quality and ethical practices.
+        </p>
+
+        {/* Founder */}
+        <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 sm:gap-5 justify-center lg:justify-start">
+          <img
+            src={founderImage}
+            alt="Founder"
+            className="w-14 h-14 sm:w-16 sm:h-16 object-cover rounded-full border-2 border-brown"
+          />
+          <div>
+            <h3 className="font-bold text-coffee text-lg">
+              John Doe
+            </h3>
+            <p className="text-gray-600 text-sm sm:text-base">
+              Founder & Head Barista
+            </p>
           </div>
         </div>
-      </section>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 
       {/* Our Mission – Image Style Section */}
       <section className="relative w-full py-20 bg-coffee text-white text-8xl font-bold flex items-center justify-center"
