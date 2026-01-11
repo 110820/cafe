@@ -73,15 +73,32 @@ const Products = () => {
 
         {/* LEFT IMAGE */}
         <div className="group relative overflow-hidden rounded-xl shadow-lg">
-          <img
-            src={storyImg}
-            alt="Cafe Interior"
-            className="w-full h-[260px] sm:h-[360px] md:h-[520px]
-                       object-cover transition duration-700 group-hover:scale-105"
-          />
-          <div className="absolute inset-0 bg-black/10 opacity-0
-                          group-hover:opacity-100 transition" />
-        </div>
+  <img
+    src={storyImg}
+    alt="Cafe Interior"
+
+    /* 🔥 PERFORMANCE FIXES */
+    loading="eager"          // load immediately
+    decoding="async"         // faster decoding
+    fetchpriority="high"     // browser priority hint
+
+    className="
+      w-full 
+      h-[260px] sm:h-[360px] md:h-[520px]
+      object-cover
+      transition-transform duration-500
+      group-hover:scale-105
+    "
+  />
+
+  <div
+    className="
+      absolute inset-0 bg-black/10
+      opacity-0 group-hover:opacity-100
+      transition-opacity duration-300
+    "
+  />
+</div>
 
         {/* RIGHT CONTENT */}
         <div>
