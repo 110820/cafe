@@ -167,41 +167,48 @@ const About = () => {
 
 
       {/* Values Section */}
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-col lg:flex-row-reverse items-center gap-12">
-            <div className="lg:w-1/2">
-              <img 
-                src={brewingImage} 
-                alt="Coffee Brewing Process" 
-                className="w-full h-96 object-cover rounded-xl shadow-lg"
-              />
-            </div>
-            <div className="lg:w-1/2">
-              <h2 className="text-4xl font-bold text-coffee mb-6 font-serif">Our Values</h2>
-              <ul className="space-y-4 mb-6">
-                <li className="flex items-start">
-                  <div className="bg-brown text-white rounded-full w-6 h-6 flex items-center justify-center mr-3 mt-1 flex-shrink-0">✓</div>
-                  <span className="text-lg text-gray-700">Ethical sourcing of premium coffee beans</span>
-                </li>
-                <li className="flex items-start">
-                  <div className="bg-brown text-white rounded-full w-6 h-6 flex items-center justify-center mr-3 mt-1 flex-shrink-0">✓</div>
-                  <span className="text-lg text-gray-700">Sustainable and eco-friendly practices</span>
-                </li>
-                <li className="flex items-start">
-                  <div className="bg-brown text-white rounded-full w-6 h-6 flex items-center justify-center mr-3 mt-1 flex-shrink-0">✓</div>
-                  <span className="text-lg text-gray-700">Exceptional customer service</span>
-                </li>
-                <li className="flex items-start">
-                  <div className="bg-brown text-white rounded-full w-6 h-6 flex items-center justify-center mr-3 mt-1 flex-shrink-0">✓</div>
-                  <span className="text-lg text-gray-700">Supporting local communities</span>
-                </li>
-              </ul>
-              
-            </div>
-          </div>
-        </div>
-      </section>
+<section className="py-12 md:py-16 bg-white">
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10">
+    <div className="flex flex-col lg:flex-row-reverse items-center gap-10 lg:gap-14">
+
+      {/* Image */}
+      <div className="w-full lg:w-1/2">
+        <img
+          src={brewingImage}
+          alt="Coffee Brewing Process"
+          className="w-full h-64 sm:h-80 md:h-96 object-cover rounded-xl shadow-lg"
+        />
+      </div>
+
+      {/* Content */}
+      <div className="w-full lg:w-1/2 text-center lg:text-left">
+        <h2 className="text-3xl sm:text-4xl font-bold text-coffee mb-6 font-serif">
+          Our Values
+        </h2>
+
+        <ul className="space-y-4 max-w-xl mx-auto lg:mx-0">
+          {[
+            "Ethical sourcing of premium coffee beans",
+            "Sustainable and eco-friendly practices",
+            "Exceptional customer service",
+            "Supporting local communities",
+          ].map((text, index) => (
+            <li key={index} className="flex items-start text-left">
+              <div className="bg-brown text-white rounded-full w-6 h-6 flex items-center justify-center mr-3 mt-1 flex-shrink-0">
+                ✓
+              </div>
+              <span className="text-base sm:text-lg text-gray-700">
+                {text}
+              </span>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 
       <Footer />
     </div>
