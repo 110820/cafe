@@ -32,13 +32,26 @@ const About = () => {
     <div className="flex flex-col lg:flex-row items-center gap-10 lg:gap-14">
 
       {/* Image */}
-      <div className="w-full lg:w-1/2">
-        <img
-          src={coffeeShopImage}
-          alt="Our Coffee Shop"
-          className="w-full h-64 sm:h-80 md:h-96 object-cover rounded-xl shadow-lg"
-        />
-      </div>
+<div className="w-full lg:w-1/2">
+  <img
+    src={coffeeShopImage}
+    alt="Our Coffee Shop"
+
+    /* 🔥 Performance Boost */
+    loading="eager"          // load immediately
+    fetchpriority="high"     // highest priority
+    decoding="async"         // non-blocking decode
+
+    className="
+      w-full 
+      h-64 sm:h-80 md:h-96
+      object-cover 
+      rounded-xl 
+      shadow-lg
+    "
+  />
+</div>
+
 
       {/* Content */}
       <div className="w-full lg:w-1/2 text-center lg:text-left">
