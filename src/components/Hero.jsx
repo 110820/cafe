@@ -117,7 +117,7 @@ const Hero = () => {
             to="/about"
             className="border border-white text-white px-7 py-3 rounded-full hover:bg-white hover:text-black transition"
           >
-            get More
+            Learn More
           </Link>
         </div>
 
