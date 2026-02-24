@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import { bookTable } from "../utils/api";
 
 import table1 from "../assets/table1.jpg";
 import table2 from "../assets/table2.jpg";
@@ -16,6 +17,17 @@ function Story() {
   const [selectedTable, setSelectedTable] = useState(null);
   const [showForm, setShowForm] = useState(false);
 
+  const [formData, setFormData] = useState({
+    fullName: "",
+    email: "",
+    guests: "",
+    date: "",
+    time: "",
+    specialRequest: "",
+  });
+
+  const [loading, setLoading] = useState(false);
+
   const tables = [
     { id: 1, name: "Table 1", image: table1 },
     { id: 2, name: "Table 2", image: table2 },
@@ -27,6 +39,47 @@ function Story() {
     { id: 8, name: "Table 8", image: table8 },
     { id: 9, name: "Table 9", image: table9 },
   ];
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      setLoading(true);
+
+      await bookTable({
+        ...formData,
+        guests: Number(formData.guests), // convert to number
+      });
+
+      alert("Table booked successfully!");
+
+      setFormData({
+        fullName: "",
+        email: "",
+        guests: "",
+        date: "",
+        time: "",
+        specialRequest: "",
+      });
+
+      setShowForm(false);
+
+    } catch (error) {
+      console.log(error);
+      alert(error.message || "Booking failed");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="bg-cream min-h-screen">
@@ -47,7 +100,6 @@ function Story() {
               Book your cozy spot and enjoy great coffee ☕
             </p>
 
-            {/* TABLE GRID */}
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-10">
               {tables.map((table) => (
                 <div
@@ -90,10 +142,8 @@ function Story() {
 
       {/* BOOKING MODAL */}
       {showForm && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center 
-                        px-4 z-50">
-          <div className="bg-white rounded-2xl shadow-2xl p-6 sm:p-8 
-                          w-full max-w-md relative">
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center px-4 z-50">
+          <div className="bg-white rounded-2xl shadow-2xl p-6 sm:p-8 w-full max-w-md relative">
 
             <button
               onClick={() => setShowForm(false)}
@@ -106,31 +156,57 @@ function Story() {
               Book Table #{selectedTable}
             </h2>
 
-            <form className="space-y-4">
+            <form className="space-y-4" onSubmit={handleSubmit}>
               <input
                 type="text"
-                placeholder="Name"
-                className="w-full border rounded-lg px-4 py-3 text-sm 
-                           focus:ring-2 focus:ring-coffee"
+                name="fullName"
+                placeholder="Full Name"
+                value={formData.fullName}
+                onChange={handleChange}
+                className="w-full border rounded-lg px-4 py-3 text-sm focus:ring-2 focus:ring-coffee"
               />
 
               <input
-                type="tel"
-                placeholder="Phone Number"
-                className="w-full border rounded-lg px-4 py-3 text-sm 
-                           focus:ring-2 focus:ring-coffee"
+                type="email"
+                name="email"
+                placeholder="Email"
+                value={formData.email}
+                onChange={handleChange}
+                className="w-full border rounded-lg px-4 py-3 text-sm focus:ring-2 focus:ring-coffee"
+              />
+
+              <input
+                type="number"
+                name="guests"
+                placeholder="Number of Guests"
+                value={formData.guests}
+                onChange={handleChange}
+                className="w-full border rounded-lg px-4 py-3 text-sm focus:ring-2 focus:ring-coffee"
               />
 
               <input
                 type="date"
-                className="w-full border rounded-lg px-4 py-3 text-sm 
-                           focus:ring-2 focus:ring-coffee"
+                name="date"
+                value={formData.date}
+                onChange={handleChange}
+                className="w-full border rounded-lg px-4 py-3 text-sm focus:ring-2 focus:ring-coffee"
               />
 
               <input
                 type="time"
-                className="w-full border rounded-lg px-4 py-3 text-sm 
-                           focus:ring-2 focus:ring-coffee"
+                name="time"
+                value={formData.time}
+                onChange={handleChange}
+                className="w-full border rounded-lg px-4 py-3 text-sm focus:ring-2 focus:ring-coffee"
+              />
+
+              <input
+                type="text"
+                name="specialRequest"
+                placeholder="Special Request"
+                value={formData.specialRequest}
+                onChange={handleChange}
+                className="w-full border rounded-lg px-4 py-3 text-sm focus:ring-2 focus:ring-coffee"
               />
 
               <input
@@ -142,13 +218,14 @@ function Story() {
 
               <button
                 type="submit"
+                disabled={loading}
                 className="w-full mt-4 bg-gradient-to-r from-coffee to-[#8b5a3c]
-                           text-white py-3 rounded-full font-semibold 
-                           hover:scale-105 transition"
+                           text-white py-3 rounded-full font-semibold hover:scale-105 transition"
               >
-                Book Table
+                {loading ? "Booking..." : "Book Table"}
               </button>
             </form>
+
           </div>
         </div>
       )}

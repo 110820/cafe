@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import { bookOrder } from "../utils/api";
 
 // category images
 import foodImg from "../assets/dish1.jpg";
@@ -72,6 +73,7 @@ function Menu() {
   const [activeCategory, setActiveCategory] = useState("food");
   const [showForm, setShowForm] = useState(false);
   const [selectedItem, setSelectedItem] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const [orderData, setOrderData] = useState({
     name: "",
@@ -201,12 +203,40 @@ function Menu() {
                 }
               />
               <button
-                onClick={() => {
-                  alert("Order Booked Successfully!");
-                  setShowForm(false);
-                }}
-                className="w-full bg-coffee text-white py-3 rounded-full"
+                onClick={async () => {
+  try {
+    setLoading(true);
+
+    await bookOrder({
+      name: orderData.name,
+      tableNo: orderData.tableNo,
+      itemName: selectedItem,
+      quantity: Number(orderData.quantity),
+      phoneNumber: orderData.phone,
+    });
+
+    alert("Order Booked Successfully!");
+
+    setOrderData({
+      name: "",
+      tableNo: "",
+      quantity: 1,
+      phone: "",
+    });
+
+    setShowForm(false);
+
+  } catch (error) {
+    console.log(error);
+    alert(error.message || "Order failed");
+  } finally {
+    setLoading(false);
+  }
+}}
+               className="w-full bg-coffee text-white py-3 rounded-full"
+disabled={loading}
               >
+                {loading ? "Booking..." : "Book Order"}
                 Book Order
               </button>
             </div>

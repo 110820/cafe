@@ -20,3 +20,23 @@ export const sendContactMessage = async (contactData) => {
     throw error.response?.data || { message: "Something went wrong" };
   }
 };
+
+// Table Booking API
+export const bookTable = async (bookingData) => {
+  try {
+    const response = await api.post("/api/table-bookings", bookingData);
+    return response.data;
+  } catch (error) {
+    throw error.response?.data || { message: "Booking failed" };
+  }
+};
+
+// Order API
+export const bookOrder = async (orderData) => {
+  try {
+    const response = await api.post("/api/orders", orderData);
+    return response.data;
+  } catch (error) {
+    throw error.response?.data || { message: "Order failed" };
+  }
+};
